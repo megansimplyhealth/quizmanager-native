@@ -1,7 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import {
-  Button,
   View,
   SafeAreaView,
   Text,
@@ -15,8 +14,8 @@ const Home = ({navigation}: {navigation: any}) => {
     container: s`flex gap-1`,
     main: s `flex-1 items-center justify-center`,
     title: s`mb-4 text-4xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white`,
-    createBut: s`bg-orange-500 border-orange-700 rounded`,
-    quizBut: s`bg-purple-500 border-purple-700 rounded`,
+    createBut: s`bg-orange-500 text-center text-white py-2 px-4 border border-orange-700 rounded`,
+    quizBut: s`bg-purple-500 text-center text-white py-2 px-4 border border-purple-700 rounded`,
   };
 
   return (
@@ -25,7 +24,7 @@ const Home = ({navigation}: {navigation: any}) => {
       <Text style={styles.title}>
         Welcome to Quiz Manager
       </Text>
-    </View>    
+    </View>
     <View style={styles.container}>
       <TouchableOpacity style={styles.quizBut} onPress={() => navigation.navigate('QuizStart')}>
       <Text>Play Questions</Text>

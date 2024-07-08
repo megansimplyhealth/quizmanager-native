@@ -2,6 +2,7 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import 'react-native-gesture-handler';
 import CreateQuestions from './Screens/CreateQuestions';
 import Home from './Screens/Home';
 import QuizStart from './Screens/QuizStart';

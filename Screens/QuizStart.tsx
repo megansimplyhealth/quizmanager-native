@@ -9,9 +9,12 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+
 const Separator = () => <View style={styles.separator} />;
 
-const QuizStart = ({navigation}: {navigation: any}) => (
+const QuizStart = ({navigation}: {navigation: any}) => {
+
+  return(
   <SafeAreaView style={styles.container}>
     <View>
       <Text style={styles.title}>
@@ -33,7 +36,7 @@ const QuizStart = ({navigation}: {navigation: any}) => (
       </TouchableOpacity>
       </View>
   </SafeAreaView>
-);
+);};
 
 const styles = StyleSheet.create({
   container: {
