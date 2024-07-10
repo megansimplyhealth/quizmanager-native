@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import {
   StyleSheet,
-  Button,
   View,
   SafeAreaView,
   Text,
@@ -12,8 +11,7 @@ import {
 } from 'react-native';
 import axios, { AxiosError } from 'axios';
 import { RadioButton } from 'react-native-paper';
-
-const Separator = () => <View style={styles.separator} />;
+import { s } from 'react-native-wind';
 
 const CreateQuestions = ({navigation}: {navigation: any}) => {
   const [questionText, setQuestionText] = useState('');
@@ -73,173 +71,141 @@ const CreateQuestions = ({navigation}: {navigation: any}) => {
 };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.main}>
       <View>
         <Text style={styles.title}>Welcome to Quiz Manager</Text>
       </View>
-      <Separator />
       <View>
         <TextInput
-          style={styles.input}
+          style={styles.questInput}
           value={questionText}
           onChangeText={setQuestionText}
           placeholder="Please Type Your Question"
         />
       </View>
-      <Separator />
-      <View style={styles.fixToText}>
+      <View style={styles.container}>
         <TextInput
-          style={styles.input}
+          style={styles.ans1Input}
           onChangeText={setAnswerOne}
           value={answerOne}
-          placeholder="Please Type Answer 1"
+          placeholder="Answer One"
         />
         <TextInput
-          style={styles.input}
+          style={styles.ans2Input}
           onChangeText={setAnswerTwo}
           value={answerTwo}
-          placeholder="Please Type Answer 2"
+          placeholder="Answer Two"
         />
       </View>
-      <Separator />
-      <View style={styles.fixToText}>
+      <View style={styles.container}>
         <TextInput
-          style={styles.input}
+          style={styles.ans3Input}
           onChangeText={setAnswerThree}
           value={answerThree}
-          placeholder="Please Type Answer 3"
+          placeholder="Answer Tree"
         />
         <TextInput
-          style={styles.input}
+          style={styles.ans4Input}
           onChangeText={setAnswerFour}
           value={answerFour}
-          placeholder="Please Type Answer 4"
+          placeholder="Answer Four"
         />
       </View>
-      <Separator />
       <View>
       <Text style={styles.radioLabel}> Please Select the Correct Answer</Text>
-      <View style={styles.radioGroup}>
-                <View style={styles.radioButton}>
+      <View style={styles.container}>
+                <View style={radioStyle.radioButton}>
                     <RadioButton.Android
                         value="1"
                         status={correctAnswer.toString() === '1' ?
                                 'checked' : 'unchecked'}
                         onPress={() => setCorrectAnswer(1)}
-                        color="#007BFF"
+                        color="#3b82f6"
                     />
-                    <Text style={styles.radioLabel}>
+                    <Text style={styles.radioLabel1}>
                         One
                     </Text>
                 </View>
 
-                <View style={styles.radioButton}>
+                <View style={radioStyle.radioButton}>
                 <RadioButton.Android
                         value="2"
                         status={correctAnswer.toString() === '2' ?
                                 'checked' : 'unchecked'}
                         onPress={() => setCorrectAnswer(2)}
-                        color="#007BFF"
+                        color="#ec4899"
                     />
-                    <Text style={styles.radioLabel}>
+                    <Text style={styles.radioLabel2}>
                         Two
                     </Text>
                 </View>
 
-                <View style={styles.radioButton}>
+                <View style={radioStyle.radioButton}>
                 <RadioButton.Android
                         value="3"
                         status={correctAnswer.toString() === '3' ?
                                 'checked' : 'unchecked'}
                         onPress={() => setCorrectAnswer(3)}
-                        color="#007BFF"
+                        color="#eab308"
                     />
-                    <Text style={styles.radioLabel}>
+                    <Text style={styles.radioLabel3}>
                         Three
                     </Text>
                 </View>
-                <View style={styles.radioButton}>
+                <View style={radioStyle.radioButton}>
                 <RadioButton.Android
                         value="4"
                         status={correctAnswer.toString() === '4' ?
                                 'checked' : 'unchecked'}
                         onPress={() => setCorrectAnswer(4)}
-                        color="#007BFF"
+                        color= "#d946ef"
                     />
-                    <Text style={styles.radioLabel}>
+                    <Text style={styles.radioLabel4}>
                         Four
                     </Text>
                 </View>
             </View>
       </View>
-      <Separator />
+
       <View>
-        <Button
-          title="Submit"
-          onPress={() => insertQuestion()}
-        />
+      <TouchableOpacity style={styles.submitBut} onPress={() => insertQuestion()}>
+          <Text style={styles.butText}>Submit</Text>
+        </TouchableOpacity>
       </View>
-      <Separator />
+
       <View>
         <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-          <Text>Back</Text>
+          <Text style={styles.backText}>Back</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    marginHorizontal: 16,
-  },
-  title: {
-    textAlign: 'center',
-    marginVertical: 8,
-  },
-  fixToText: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: '#737373',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
-  radioGroup: {
+const radioStyle = StyleSheet.create({
+  radioButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-around',
-    marginTop: 20,
-    borderRadius: 8,
-    backgroundColor: 'white',
-    padding: 16,
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOffset: {
-        width: 0,
-        height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-},
-radioButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-},
-radioLabel: {
-    marginLeft: 8,
-    fontSize: 16,
-    color: '#333',
-},
-});
+}});
+
+const styles = {
+  container: s`m-4 mb-2 flex flex-row`,
+  main: s `flex-1 items-center justify-center bg-slate-300`,
+  title: s`mb-10 text-5xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white`,
+  subTitle: s`mb-10 text-4xl text-center font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white`,
+  questInput: s`py-5 px-20 w-full text-lg text-left text-slate-900 border-2 border-slate-900 rounded-xl`,
+  ans1Input: s`m-2 py-4 px-10 w-1/2 text-lg text-left text-wrap text-blue-500 border-2 border-blue-500 rounded-xl`,
+  ans2Input: s`m-2 py-4 px-10 w-1/2 text-lg text-left text-wrap text-pink-500 border-2 border-pink-500 rounded-xl`,
+  ans3Input: s`m-2 py-4 px-10 w-1/2 text-lg text-left text-wrap text-yellow-500 border-2 border-yellow-500 rounded-xl`,
+  ans4Input: s`m-2 py-4 px-10 w-1/2 text-lg text-left text-wrap text-purple-500 border-2 border-purple-500 rounded-xl`,
+  submitBut: s`m-4 py-3 px-20 bg-green-500 border border-green-600 rounded-xl`,
+  butText: s`text-gray-100 font-bold text-4xl text-center text-wrap`,
+  backText: s`mt-8 text-4xl text-center font-bold leading-none tracking-tight text-red-700 md:text-5xl lg:text-6xl dark:text-white`,
+  radioLabel: s`mt-4 text-2xl font-bold text-left text-wrap`,
+  radioLabel1: s`text-2xl font-bold text-left text-wrap text-blue-500`,
+  radioLabel2: s`text-2xl font-bold text-left text-wrap text-pink-500`,
+  radioLabel3: s`text-2xl font-bold text-left text-wrap text-yellow-500`,
+  radioLabel4: s`text-2xl font-bold text-left text-wrap text-purple-500`,
+};
 
 export default CreateQuestions;

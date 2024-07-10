@@ -11,11 +11,12 @@ import { s } from "react-native-wind";
 const Home = ({navigation}: {navigation: any}) => {
 
   const styles = {
-    container: s`flex gap-1`,
-    main: s `flex-1 items-center justify-center`,
-    title: s`mb-4 text-4xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white`,
-    createBut: s`bg-orange-500 text-center text-white py-2 px-4 border border-orange-700 rounded`,
-    quizBut: s`bg-purple-500 text-center text-white py-2 px-4 border border-purple-700 rounded`,
+    container: s`flex flex-col justify-between`,
+    main: s `flex-1 items-center justify-center bg-slate-300`,
+    title: s`mb-10 text-5xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white`,
+    createBut: s`mb-10 py-10 px-16 bg-orange-500 border border-orange-700 rounded-xl`,
+    quizBut: s`mb-10 py-10 px-16 bg-purple-500 border border-purple-700 rounded-xl`,
+    butText: s`text-gray-200 font-bold text-3xl text-center`,
   };
 
   return (
@@ -27,19 +28,14 @@ const Home = ({navigation}: {navigation: any}) => {
     </View>
     <View style={styles.container}>
       <TouchableOpacity style={styles.quizBut} onPress={() => navigation.navigate('QuizStart')}>
-      <Text>Play Questions</Text>
+      <Text style={styles.butText}>Play Questions</Text>
     </TouchableOpacity>
-    </View>
-
-    <View style={styles.container}>
     <TouchableOpacity style={styles.createBut} onPress={() => navigation.navigate('CreateQuestions')}>
-      <Text>Create Questions</Text>
+      <Text style={styles.butText}>Create Questions</Text>
     </TouchableOpacity>
     </View>
   </SafeAreaView>
 );
 };
-
-
 
 export default Home;

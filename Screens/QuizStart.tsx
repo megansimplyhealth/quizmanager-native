@@ -1,62 +1,45 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import {
-  StyleSheet,
   View,
   SafeAreaView,
   Text,
   Alert,
   TouchableOpacity,
 } from 'react-native';
+import { s } from 'react-native-wind';
 
-
-const Separator = () => <View style={styles.separator} />;
 
 const QuizStart = ({navigation}: {navigation: any}) => {
 
   return(
-  <SafeAreaView style={styles.container}>
+  <SafeAreaView style={styles.main}>
     <View>
       <Text style={styles.title}>
         Welcome to Quiz Manager
       </Text>
     </View>
-    <Separator />
     <TouchableOpacity onPress={() => navigation.navigate('Quiz')}>
-        <Text>Start</Text>
+        <Text style={styles.startText}>Start</Text>
       </TouchableOpacity>
-    <Separator />
     <TouchableOpacity onPress={() => Alert.alert('Leader Board Pressed! Currently in progress')}>
-        <Text>Leader Board</Text>
+        <Text style={styles.leadText}>Leader Board</Text>
       </TouchableOpacity>
-      <Separator />
-      <View> 
+      <View>
       <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-        <Text>Back</Text>
+        <Text style={styles.backText}>Back</Text>
       </TouchableOpacity>
       </View>
   </SafeAreaView>
 );};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    marginHorizontal: 16,
-  },
-  title: {
-    textAlign: 'center',
-    marginVertical: 8,
-  },
-  fixToText: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: '#737373',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-});
+const styles = {
+  main: s `flex-1 items-center justify-top bg-slate-300`,
+  title: s`mt-20 mb-10 text-5xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white`,
+  startText: s`m-5 mt-10 text-5xl text-center font-bold leading-none tracking-tight text-green-700 md:text-5xl lg:text-6xl dark:text-white`,
+  leadText: s`m-5 mt-10  text-5xl text-center font-bold leading-none tracking-tight text-orange-700 md:text-5xl lg:text-6xl dark:text-white`,
+  backText: s`m-5 mt-10  text-5xl text-center font-bold leading-none tracking-tight text-red-700 md:text-5xl lg:text-6xl dark:text-white`,
+};
+
 
 export default QuizStart;

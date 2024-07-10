@@ -1,19 +1,15 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import axios from 'axios';
 import {
-  StyleSheet,
-  Button,
   View,
   SafeAreaView,
   Text,
   Alert,
   TouchableOpacity,
 } from 'react-native';
+import { s } from 'react-native-wind';
 
-
-const Separator = () => <View style={styles.separator} />;
 
 const Quiz = ({navigation}: {navigation: any}) => {
   const [index, setIndex] = useState(0);
@@ -62,10 +58,6 @@ const Quiz = ({navigation}: {navigation: any}) => {
       Alert.alert('No more Questions to show!');
       setIndex(0);
       return;
-      // } else {
-      //   console.log(error);
-      //   Alert.alert('E: ' + error);
-      // }
     }
   };
 
@@ -92,67 +84,52 @@ const Quiz = ({navigation}: {navigation: any}) => {
   }, []);
 
   return(
-  <SafeAreaView style={styles.container}>
+  <SafeAreaView style={styles.main}>
     <View>
       <Text style={styles.title}>
         Welcome to Quiz Manager
       </Text>
     </View>
-    <Separator />
-    <Text style={styles.title}>
+    <Text style={styles.subTitle}>
         {question}
-      </Text>
-    <Separator />
-    <View style={styles.fixToText}>
-        <Button
-          title={answers.answer1}
-          onPress={() => verifyAnswer(1)}
-          // onPress={() => verifyAnswer(1)}
-        />
-        <Button
-          title={answers.answer2}
-          onPress={() => verifyAnswer(2)}
-        />
-      </View>
-    <Separator />
-    <View style={styles.fixToText}>
-        <Button
-          title={answers.answer3}
-          onPress={() => verifyAnswer(3)}
-        />
-        <Button
-          title={answers.answer4}
-          onPress={() => verifyAnswer(4)}
-        />
-      </View>
-      <Separator />
-      <View>
-      <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-        <Text>Back</Text>
+    </Text>
+
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.answerBut1} onPress={() => verifyAnswer(1)}>
+        <Text style={styles.butText}>{answers.answer1}</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.answerBut2} onPress={() => verifyAnswer(2)}>
+        <Text style={styles.butText}>{answers.answer2}</Text>
+      </TouchableOpacity>
+    </View>
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.answerBut3} onPress={() => verifyAnswer(3)}>
+        <Text style={styles.butText}>{answers.answer3}</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.answerBut4} onPress={() => verifyAnswer(4)}>
+        <Text style={styles.butText}>{answers.answer4}</Text>
+      </TouchableOpacity>
+    </View>
+
+    <View style={styles.container}>
+      <TouchableOpacity onPress={() => navigation.navigate('QuizStart')}>
+        <Text style={styles.backText}>Back</Text>
       </TouchableOpacity>
       </View>
   </SafeAreaView>
 );};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    marginHorizontal: 16,
-  },
-  title: {
-    textAlign: 'center',
-    marginVertical: 8,
-  },
-  fixToText: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: '#737373',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-});
+const styles = {
+  container: s`m-4 mb-2 flex flex-row`,
+  main: s `flex-1 items-center justify-center bg-slate-300`,
+  title: s`mb-10 text-5xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white`,
+  subTitle: s`mb-10 text-4xl text-center font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white`,
+  answerBut1: s`ml-2 mr-2 w-1/2 h-full py-12 bg-blue-500 border border-blue-700 rounded-xl`,
+  answerBut2: s`ml-2 mr-2 w-1/2 h-full py-12 bg-pink-500 border border-pink-700 rounded-xl`,
+  answerBut3: s`ml-2 mr-2 w-1/2 h-full py-12 bg-yellow-500 border border-yellow-700 rounded-xl`,
+  answerBut4: s`ml-2 mr-2 w-1/2 h-full py-12 bg-purple-500 border border-purple-700 rounded-xl`,
+  butText: s`text-gray-200 font-bold text-lg text-center text-wrap`,
+  backText: s`mt-10 text-4xl text-center font-bold leading-none tracking-tight text-red-700 md:text-5xl lg:text-6xl dark:text-white`,
+};
 
 export default Quiz;
