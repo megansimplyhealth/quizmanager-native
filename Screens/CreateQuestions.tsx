@@ -12,6 +12,7 @@ import {
 import axios, { AxiosError } from 'axios';
 import { RadioButton } from 'react-native-paper';
 import { s } from 'react-native-wind';
+import AnswerInputBox from '../Components/AnswerInputBox';
 
 const CreateQuestions = ({navigation}: {navigation: any}) => {
   const [questionText, setQuestionText] = useState('');
@@ -77,40 +78,40 @@ const CreateQuestions = ({navigation}: {navigation: any}) => {
       </View>
       <View>
         <TextInput
-          style={styles.questInput}
+          style={s`py-5 px-20 w-full text-lg text-left text-slate-900 border-2 border-slate-900 rounded-xl`}
           value={questionText}
           onChangeText={setQuestionText}
           placeholder="Please Type Your Question"
         />
       </View>
-      <View style={styles.container}>
-        <TextInput
-          style={styles.ans1Input}
-          onChangeText={setAnswerOne}
-          value={answerOne}
+
+      <View >
+        <AnswerInputBox
+          color= "answerColorOne"
+          value= {answerOne}
+          onChange={() => setAnswerOne}
           placeholder="Answer One"
         />
-        <TextInput
-          style={styles.ans2Input}
-          onChangeText={setAnswerTwo}
+        <AnswerInputBox
+          color= "answerColorTwo"
           value={answerTwo}
+          onChange={() => setAnswerTwo}
           placeholder="Answer Two"
         />
-      </View>
-      <View style={styles.container}>
-        <TextInput
-          style={styles.ans3Input}
-          onChangeText={setAnswerThree}
+        <AnswerInputBox
+          color= "answerColorThree"
           value={answerThree}
+          onChange={() => setAnswerThree}
           placeholder="Answer Tree"
         />
-        <TextInput
-          style={styles.ans4Input}
-          onChangeText={setAnswerFour}
+        <AnswerInputBox
+          color= "answerColorFour"
           value={answerFour}
+          onChange={() => setAnswerFour}
           placeholder="Answer Four"
         />
       </View>
+
       <View>
       <Text style={styles.radioLabel}> Please Select the Correct Answer</Text>
       <View style={styles.container}>
