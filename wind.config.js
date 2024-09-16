@@ -11,6 +11,10 @@ customize({
       playButton: '#F7CC3E',
       createButton: '#FC748D',
       titleText: '#F9FAFF',
+      answerColorOne: '#3DC7F9',
+      answerColorTwo: '#692DF7',
+      answerColorThree: '#C315EE',
+      answerColorFour: '#FB3EA6',
     },
   },
 });

@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { s } from 'react-native-wind';
+import AnswerButton from '../Components/AnswerButton';
 
 
 const Quiz = ({navigation}: {navigation: any}) => {
@@ -94,21 +95,27 @@ const Quiz = ({navigation}: {navigation: any}) => {
         {question}
     </Text>
 
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.answerBut1} onPress={() => verifyAnswer(1)}>
-        <Text style={styles.butText}>{answers.answer1}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.answerBut2} onPress={() => verifyAnswer(2)}>
-        <Text style={styles.butText}>{answers.answer2}</Text>
-      </TouchableOpacity>
-    </View>
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.answerBut3} onPress={() => verifyAnswer(3)}>
-        <Text style={styles.butText}>{answers.answer3}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.answerBut4} onPress={() => verifyAnswer(4)}>
-        <Text style={styles.butText}>{answers.answer4}</Text>
-      </TouchableOpacity>
+    <View >
+      <AnswerButton
+        color="answerColorOne"
+        text={answers.answer1}
+        onPress={() => verifyAnswer(1)}
+        visibility={true} />
+      <AnswerButton
+        color="answerColorTwo"
+        text={answers.answer2}
+        onPress={() => verifyAnswer(2)}
+        visibility={true} />
+      <AnswerButton
+        color="answerColorThree"
+        text={answers.answer3}
+        onPress={() => verifyAnswer(3)}
+        visibility={true} />
+      <AnswerButton
+        color="answerColorFour"
+        text={answers.answer4}
+        onPress={() => verifyAnswer(4)}
+        visibility={true} />
     </View>
 
     <View style={styles.container}>
@@ -121,14 +128,10 @@ const Quiz = ({navigation}: {navigation: any}) => {
 
 const styles = {
   container: s`m-4 mb-2 flex flex-row`,
-  main: s `flex-1 items-center justify-center bg-slate-300`,
+  buttonContainer: s`flex-auto h-1/2 w-full`,
+  main: s `flex-1 w-full h-full items-center justify-center bg-slate-300`,
   title: s`mb-10 text-5xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white`,
   subTitle: s`mb-10 text-4xl text-center font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white`,
-  answerBut1: s`ml-2 mr-2 w-1/2 h-full py-12 bg-blue-500 border border-blue-700 rounded-xl`,
-  answerBut2: s`ml-2 mr-2 w-1/2 h-full py-12 bg-pink-500 border border-pink-700 rounded-xl`,
-  answerBut3: s`ml-2 mr-2 w-1/2 h-full py-12 bg-yellow-500 border border-yellow-700 rounded-xl`,
-  answerBut4: s`ml-2 mr-2 w-1/2 h-full py-12 bg-purple-500 border border-purple-700 rounded-xl`,
-  butText: s`text-gray-200 font-bold text-lg text-center text-wrap`,
   backText: s`mt-10 text-4xl text-center font-bold leading-none tracking-tight text-red-700 md:text-5xl lg:text-6xl dark:text-white`,
 };
 
