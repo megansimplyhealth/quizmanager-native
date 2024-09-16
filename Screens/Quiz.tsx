@@ -23,10 +23,10 @@ const Quiz = ({navigation}: {navigation: any}) => {
   const [correctAnswer, setCorrectAnswer] = useState(0);
   const [score, setScore] = useState(0);
 
-  let host = '10.0.2.2:5054'; // TO DO PUT IN CONFIG FILE AND CALL
+  //let host = '10.0.2.2:5054'; // TO DO PUT IN CONFIG FILE AND CALL
 
   const updateQuestion = async () => {
-    let baseURL = 'http://' + host + '/questions';
+    let baseURL = 'http://10.0.2.2:5054/Questions';
     let config = {
       method: 'get',
       maxBodyLength: Infinity,

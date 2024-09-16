@@ -12,7 +12,7 @@ const Home = ({navigation}: {navigation: any}) => {
 
   const styles = {
     container: s`flex flex-col justify-between`,
-    main: s `flex-1 items-center justify-center bg-slate-300`,
+    main: s `flex-1 items-center justify-center bg-background`,
     title: s`mb-10 text-5xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white`,
     createBut: s`mb-10 py-10 px-16 bg-orange-500 border border-orange-700 rounded-xl`,
     quizBut: s`mb-10 py-10 px-16 bg-purple-500 border border-purple-700 rounded-xl`,
@@ -39,3 +39,4 @@ const Home = ({navigation}: {navigation: any}) => {
 };
 
 export default Home;
+
