@@ -13,7 +13,7 @@ const Home = ({navigation}: {navigation: any}) => {
   const styles = {
     container: s`flex flex-col justify-between`,
     main: s `flex-1 items-center justify-center bg-background-main`,
-    title: s`mb-10 text-5xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white`,
+    title: s`mb-10 text-6xl text-center font-extrabold leading-none tracking-tight text-titleText md:text-5xl lg:text-6xl dark:text-white`,
   };
 
   return (

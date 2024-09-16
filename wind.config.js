@@ -10,10 +10,7 @@ customize({
         },
       playButton: '#F7CC3E',
       createButton: '#FC748D',
-      // secondary: {
-      //   light: "#f3f3f3",
-      //   dark: "#212121",
-      // },
+      titleText: '#F9FAFF',
     },
   },
 });

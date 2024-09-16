@@ -29,11 +29,11 @@ interface props {
     <View style={s`${customStyle}`}>
         <TouchableOpacity
         style={[
-            s`m-4 py-16 px-16 bg-background-shaddow border-4 rounded-xl border-${color}`]}
+            s`m-2 py-10 px-16 bg-background-shaddow border-4 rounded-xl border-${color}`]}
             onPress={onPress}
         >
             <Text style={[
-            s`font-bold bg-background-shaddow text-3xl text-center text-${color}`]}>
+            s`font-bold bg-background-shaddow text-5xl text-center text-${color}`]}>
                 {text}
             </Text>
         </TouchableOpacity>
@@ -42,3 +42,4 @@ interface props {
   };
 
 export default MainButton;
+
