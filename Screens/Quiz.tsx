@@ -86,31 +86,37 @@ const Quiz = ({navigation}: {navigation: any}) => {
 
   return(
   <SafeAreaView style={styles.main}>
-    <View>
-      <Text style={styles.title}>
-        Welcome to Quiz Manager
+    <View style={styles.timerContainer}>
+        <Text style={styles.timer}>
+          00:00
+        </Text>
+    </View>
+
+    <View style={styles.questionContainer}>
+      <Text style={styles.question}>
+        {question}
       </Text>
     </View>
-    <Text style={styles.subTitle}>
-        {question}
-    </Text>
 
-    <View >
+    <View style={styles.answerContainer}>
       <AnswerButton
         color="answerColorOne"
         text={answers.answer1}
         onPress={() => verifyAnswer(1)}
-        visibility={true} />
+        visibility={true}
+        style = "mb-4 mt-4" />
       <AnswerButton
         color="answerColorTwo"
         text={answers.answer2}
         onPress={() => verifyAnswer(2)}
-        visibility={true} />
+        visibility={true}
+        style = "mb-4"  />
       <AnswerButton
         color="answerColorThree"
         text={answers.answer3}
         onPress={() => verifyAnswer(3)}
-        visibility={true} />
+        visibility={true}
+        style = "mb-4"  />
       <AnswerButton
         color="answerColorFour"
         text={answers.answer4}
@@ -118,21 +124,23 @@ const Quiz = ({navigation}: {navigation: any}) => {
         visibility={true} />
     </View>
 
-    <View style={styles.container}>
+    <View style={styles.backButtonContainer}>
       <TouchableOpacity onPress={() => navigation.navigate('QuizStart')}>
         <Text style={styles.backText}>Back</Text>
       </TouchableOpacity>
-      </View>
+    </View>
   </SafeAreaView>
 );};
 
 const styles = {
-  container: s`m-4 mb-2 flex flex-row`,
-  buttonContainer: s`flex-auto h-1/2 w-full`,
-  main: s `flex-1 w-full h-full items-center justify-center bg-slate-300`,
-  title: s`mb-10 text-5xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white`,
-  subTitle: s`mb-10 text-4xl text-center font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white`,
-  backText: s`mt-10 text-4xl text-center font-bold leading-none tracking-tight text-red-700 md:text-5xl lg:text-6xl dark:text-white`,
+  main: s`flex-1 bg-background-main`,
+  timerContainer: s`flex-2 mt-6 items-center justify-center`,
+  timer: s`text-4xl font-extrabold text-red-600`,
+  questionContainer: s`flex-3 mt-12 items-center justify-center px-4`,
+  question: s`text-3xl font-extrabold text-titleText`,
+  answerContainer: s`flex-4 absolute bottom-20 w-full px-4 space-y-4 mb-10`,
+  backButtonContainer: s`felx-5 absolute bottom-6 w-full items-center`,
+  backText: s`text-4xl font-extrabold text-red-600`,
 };
 
 export default Quiz;

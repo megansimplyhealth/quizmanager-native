@@ -29,11 +29,11 @@ interface props {
     <View style={s`${customStyle}`}>
         <TouchableOpacity
         style={[
-            s`w-full h-1/4 bg-background-shaddow border-4 rounded-xl border-${color}`]}
+            s`w-full py-6 bg-background-shaddow border-2 rounded-xl border-${color}`]}
             onPress={onPress}
         >
             <Text style={[
-            s`font-bold bg-background-shaddow text-lg text-center text-wrap text-${color}`]}>
+            s`font-bold text-2xl text-center text-wrap text-${color}`]}>
                 {text}
             </Text>
         </TouchableOpacity>
