@@ -15,6 +15,7 @@ customize({
       answerColorTwo: '#692DF7',
       answerColorThree: '#C315EE',
       answerColorFour: '#FB3EA6',
+      questionColor: '#F9FAFF',
     },
   },
 });

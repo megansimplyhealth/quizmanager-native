@@ -7,6 +7,8 @@ import CreateQuestions from './Screens/CreateQuestions';
 import Home from './Screens/Home';
 import QuizStart from './Screens/QuizStart';
 import Quiz from './Screens/Quiz';
+import { View } from 'react-native';
+import { s } from 'react-native-wind';
 
 
 const Stack = createStackNavigator();
@@ -15,6 +17,7 @@ const Stack = createStackNavigator();
 const App = () => {
 
   return (
+    <View style={s`flex-1 bg-background-main`}>
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} />
@@ -24,6 +27,7 @@ const App = () => {
         {/* { <Stack.Screen name="LeaderBoard" component={LeaderBoard} />} */}
       </Stack.Navigator>
     </NavigationContainer>
+    </View>
   );
 };
 

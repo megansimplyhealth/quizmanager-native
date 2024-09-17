@@ -1,18 +1,20 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
 import {
-  StyleSheet,
   View,
-  SafeAreaView,
   Text,
   Alert,
   TouchableOpacity,
   TextInput,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView
 } from 'react-native';
 import axios, { AxiosError } from 'axios';
-import { RadioButton } from 'react-native-paper';
 import { s } from 'react-native-wind';
 import AnswerInputBox from '../Components/AnswerInputBox';
+import RadioButtonRow from '../Components/RadioButtonRow';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const CreateQuestions = ({navigation}: {navigation: any}) => {
   const [questionText, setQuestionText] = useState('');
@@ -71,142 +73,88 @@ const CreateQuestions = ({navigation}: {navigation: any}) => {
 
 };
 
-  return (
+return (
+  <KeyboardAvoidingView
+    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    style={styles.main}
+  >
     <SafeAreaView style={styles.main}>
-      <View>
-        <Text style={styles.title}>Welcome to Quiz Manager</Text>
-      </View>
-      <View>
-        <TextInput
-          style={s`py-5 px-20 w-full text-lg text-left text-slate-900 border-2 border-slate-900 rounded-xl`}
-          value={questionText}
-          onChangeText={setQuestionText}
-          placeholder="Please Type Your Question"
-        />
-      </View>
+      <ScrollView contentContainerStyle={{flexGrow: 1}}>
+        <View style={styles.backButtonContainer}>
+          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+            <Text style={styles.backText}>BACK</Text>
+          </TouchableOpacity>
+        </View>
 
-      <View >
-        <AnswerInputBox
-          color= "answerColorOne"
-          value= {answerOne}
-          onChange={() => setAnswerOne}
-          placeholder="Answer One"
-        />
-        <AnswerInputBox
-          color= "answerColorTwo"
-          value={answerTwo}
-          onChange={() => setAnswerTwo}
-          placeholder="Answer Two"
-        />
-        <AnswerInputBox
-          color= "answerColorThree"
-          value={answerThree}
-          onChange={() => setAnswerThree}
-          placeholder="Answer Tree"
-        />
-        <AnswerInputBox
-          color= "answerColorFour"
-          value={answerFour}
-          onChange={() => setAnswerFour}
-          placeholder="Answer Four"
-        />
-      </View>
+        <View style={styles.questionContainer}>
+          <TextInput
+            style={styles.question}
+            value={questionText}
+            onChangeText={setQuestionText}
+            placeholder="Please Type Your Question"
+            placeholderTextColor="white"
+          />
+        </View>
 
-      <View>
-      <Text style={styles.radioLabel}> Please Select the Correct Answer</Text>
-      <View style={styles.container}>
-                <View style={radioStyle.radioButton}>
-                    <RadioButton.Android
-                        value="1"
-                        status={correctAnswer.toString() === '1' ?
-                                'checked' : 'unchecked'}
-                        onPress={() => setCorrectAnswer(1)}
-                        color="#3b82f6"
-                    />
-                    <Text style={styles.radioLabel1}>
-                        One
-                    </Text>
-                </View>
+        <View style={styles.answerContainer}>
+          <AnswerInputBox
+            color="answerColorOne"
+            value={answerOne}
+            onChange={setAnswerOne}
+            placeholder="Answer One"
+            style={'mb-2'}
+            placeholderColor="#3DC7F9"
+          />
+          <AnswerInputBox
+            color="answerColorTwo"
+            value={answerTwo}
+            onChange={setAnswerTwo}
+            placeholder="Answer Two"
+            style={'mb-2'}
+            placeholderColor="#692DF7"
+          />
+          <AnswerInputBox
+            color="answerColorThree"
+            value={answerThree}
+            onChange={setAnswerThree}
+            placeholder="Answer Three"
+            style={'mb-2'}
+            placeholderColor="#C315EE"
+          />
+          <AnswerInputBox
+            color="answerColorFour"
+            value={answerFour}
+            onChange={setAnswerFour}
+            placeholder="Answer Four"
+            placeholderColor="#FB3EA6"
+          />
 
-                <View style={radioStyle.radioButton}>
-                <RadioButton.Android
-                        value="2"
-                        status={correctAnswer.toString() === '2' ?
-                                'checked' : 'unchecked'}
-                        onPress={() => setCorrectAnswer(2)}
-                        color="#ec4899"
-                    />
-                    <Text style={styles.radioLabel2}>
-                        Two
-                    </Text>
-                </View>
+          <RadioButtonRow
+            colors={['answerColorOne', 'answerColorTwo', 'answerColorThree', 'answerColorFour']}
+            correctAnswer={correctAnswer}
+            setCorrectAnswer={setCorrectAnswer}
+          />
+        </View>
 
-                <View style={radioStyle.radioButton}>
-                <RadioButton.Android
-                        value="3"
-                        status={correctAnswer.toString() === '3' ?
-                                'checked' : 'unchecked'}
-                        onPress={() => setCorrectAnswer(3)}
-                        color="#eab308"
-                    />
-                    <Text style={styles.radioLabel3}>
-                        Three
-                    </Text>
-                </View>
-                <View style={radioStyle.radioButton}>
-                <RadioButton.Android
-                        value="4"
-                        status={correctAnswer.toString() === '4' ?
-                                'checked' : 'unchecked'}
-                        onPress={() => setCorrectAnswer(4)}
-                        color= "#d946ef"
-                    />
-                    <Text style={styles.radioLabel4}>
-                        Four
-                    </Text>
-                </View>
-            </View>
-      </View>
-
-      <View>
-      <TouchableOpacity style={styles.submitBut} onPress={() => insertQuestion()}>
-          <Text style={styles.butText}>Submit</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View>
-        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-          <Text style={styles.backText}>Back</Text>
-        </TouchableOpacity>
-      </View>
+        <View style={styles.submitButtonContainer}>
+          <TouchableOpacity onPress={() => insertQuestion()}>
+            <Text style={styles.submitText}>SUBMIT</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </SafeAreaView>
-  );
-};
-
-const radioStyle = StyleSheet.create({
-  radioButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-}});
+  </KeyboardAvoidingView>
+);};
 
 const styles = {
-  container: s`m-4 mb-2 flex flex-row`,
-  main: s `flex-1 items-center justify-center bg-slate-300`,
-  title: s`mb-10 text-5xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white`,
-  subTitle: s`mb-10 text-4xl text-center font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white`,
-  questInput: s`py-5 px-20 w-full text-lg text-left text-slate-900 border-2 border-slate-900 rounded-xl`,
-  ans1Input: s`m-2 py-4 px-10 w-1/2 text-lg text-left text-wrap text-blue-500 border-2 border-blue-500 rounded-xl`,
-  ans2Input: s`m-2 py-4 px-10 w-1/2 text-lg text-left text-wrap text-pink-500 border-2 border-pink-500 rounded-xl`,
-  ans3Input: s`m-2 py-4 px-10 w-1/2 text-lg text-left text-wrap text-yellow-500 border-2 border-yellow-500 rounded-xl`,
-  ans4Input: s`m-2 py-4 px-10 w-1/2 text-lg text-left text-wrap text-purple-500 border-2 border-purple-500 rounded-xl`,
-  submitBut: s`m-4 py-3 px-20 bg-green-500 border border-green-600 rounded-xl`,
-  butText: s`text-gray-100 font-bold text-4xl text-center text-wrap`,
-  backText: s`mt-8 text-4xl text-center font-bold leading-none tracking-tight text-red-700 md:text-5xl lg:text-6xl dark:text-white`,
-  radioLabel: s`mt-4 text-2xl font-bold text-left text-wrap`,
-  radioLabel1: s`text-2xl font-bold text-left text-wrap text-blue-500`,
-  radioLabel2: s`text-2xl font-bold text-left text-wrap text-pink-500`,
-  radioLabel3: s`text-2xl font-bold text-left text-wrap text-yellow-500`,
-  radioLabel4: s`text-2xl font-bold text-left text-wrap text-purple-500`,
+  main: s`flex-1 bg-background-main`,
+  backButtonContainer: s`flex-2 bg-background-main mt-6 items-center justify-center`,
+  backText: s`text-4xl font-extrabold text-red-600 bg-background-main`,
+  questionContainer: s`flex-3 mt-8 mb-8 items-center justify-center px-4 bg-background-main`,
+  question: s`w-full py-12 bg-background-shaddow border-2 rounded-xl border-questionColor font-bold text-xl text-center text-wrap text-questionColor bg-background-main`,
+  answerContainer: s`flex-4 w-full px-4 space-y-4 bg-background-main`,
+  submitButtonContainer: s`felx-5 w-full items-center bg-background-main mt-6`,
+  submitText: s`text-4xl font-extrabold text-red-600 bg-background-main`,
 };
 
 export default CreateQuestions;
