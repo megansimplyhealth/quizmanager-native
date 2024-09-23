@@ -11,7 +11,10 @@ import { s } from 'react-native-wind';
 import AnswerButton from '../Components/AnswerButton';
 
 
-const Quiz = ({navigation}: {navigation: any}) => {
+const Quiz = ({ route, navigation}: {route: any,navigation: any}) => {
+
+  const {username} = route.params;
+
   const [index, setIndex] = useState(0);
   const [question, setQuestion] = useState('Question Text');
   const [answers, setAnswers] = useState({
@@ -125,7 +128,7 @@ const Quiz = ({navigation}: {navigation: any}) => {
 
     <View style={styles.backButtonContainer}>
       <TouchableOpacity onPress={() => navigation.navigate('QuizStart')}>
-        <Text style={styles.backText}>Back</Text>
+        <Text style={styles.backText}>BACK</Text>
       </TouchableOpacity>
     </View>
   </View>
