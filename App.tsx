@@ -9,6 +9,7 @@ import QuizStart from './Screens/QuizStart';
 import Quiz from './Screens/Quiz';
 import { View } from 'react-native';
 import { s } from 'react-native-wind';
+import Leaderboard from './Screens/Leaderboard';
 
 
 const Stack = createStackNavigator();
@@ -24,6 +25,7 @@ const App = () => {
         <Stack.Screen name="CreateQuestions" component={CreateQuestions} />
         <Stack.Screen name="Quiz" component={Quiz} />
         <Stack.Screen name="QuizStart" component={QuizStart} />
+        <Stack.Screen name="Leaderboard" component={Leaderboard} />
         {/* { <Stack.Screen name="LeaderBoard" component={LeaderBoard} />} */}
       </Stack.Navigator>
     </NavigationContainer>

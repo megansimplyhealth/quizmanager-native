@@ -10,6 +10,7 @@ customize({
         },
       playButton: '#F7CC3E',
       createButton: '#FC748D',
+      leaderboardButton: '#61D384',
       titleText: '#F9FAFF',
       answerColorOne: '#3DC7F9',
       answerColorTwo: '#692DF7',
