@@ -4,9 +4,10 @@ import { StyleSheet, View } from 'react-native';
 import { Table, Row, Rows } from 'react-native-table-component';
 
 type Columns = {
-  name: string;
-  score: number;
-  time: string;
+  name: string,
+  score: number,
+  time: string,
+  date: string
 };
 
 interface Props {
@@ -14,9 +15,9 @@ interface Props {
 }
 
 const LeaderboardTable : React.FC<Props> = ({ tableData}) => {
-  const [tableHead] = useState<string[]>(['Name', 'Score', 'Time']);
+  const [tableHead] = useState<string[]>(['Name', 'Score', 'Time', 'Date']);
 
-  const data = tableData.map(item => [item.name, item.score.toString(), item.time]);
+  const data = tableData.map(item => [item.name, item.score, item.time, item.date]);
 
 
   return (
