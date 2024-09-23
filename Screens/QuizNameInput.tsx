@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   SafeAreaView,
@@ -9,11 +9,40 @@ import {
 } from 'react-native';
 import { s } from 'react-native-wind';
 import MainButton from '../Components/MainButton';
+import axios from 'axios';
 
 
 const QuizNameInput = ({navigation}: {navigation: any}) => {
 
-    const [username, setUsername] = useState('');
+  const [username, setUsername] = useState('');
+  const [questionAmount, setQuestionAmount] = useState(0);
+
+  const getQuestionAmount = async () => {
+    let baseURL = 'http://10.0.2.2:5054/Questions';
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: baseURL,
+      params: {
+      },
+      headers: {
+      },
+    };
+
+    try{
+      const response = await axios.request(config);
+      setQuestionAmount(response.data.length);
+      console.log(response.data.length);
+    } catch (error : any) { 
+      console.log('Error: ', error);
+    }
+  };
+
+  useEffect(() => {
+    getQuestionAmount();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
 
   return(
       <SafeAreaView style={styles.main}>
@@ -36,7 +65,7 @@ const QuizNameInput = ({navigation}: {navigation: any}) => {
           <MainButton
             color="playButton"
             text="Play Questions"
-            onPress={() => navigation.navigate('Quiz', { username: username })}
+            onPress={() => navigation.navigate('Quiz', { username: username, questionAmount: questionAmount })}
             visibility={true}
             style = "mb-10"
           />

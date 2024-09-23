@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import {
   View,
   Text,
@@ -14,8 +14,9 @@ import AnswerButton from '../Components/AnswerButton';
 const Quiz = ({ route, navigation}: {route: any,navigation: any}) => {
 
   const {username} = route.params;
+  const {questionAmount} = route.params;
 
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(11);///////////////////////////////////////////////////////////////////////////
   const [question, setQuestion] = useState('Question Text');
   const [answers, setAnswers] = useState({
     answer1: 'Answer One',
@@ -25,10 +26,18 @@ const Quiz = ({ route, navigation}: {route: any,navigation: any}) => {
   });
   const [correctAnswer, setCorrectAnswer] = useState(0);
   const [score, setScore] = useState(0);
+  let newDate = new Date();
+  var date = newDate.getDate() + '/' + (newDate.getMonth() + 1) + '/' + newDate.getFullYear();
 
   //let host = '10.0.2.2:5054'; // TO DO PUT IN CONFIG FILE AND CALL
 
   const updateQuestion = async () => {
+
+    if (index === questionAmount) {
+      sendResponse();
+      navigation.navigate('QuizStart');
+    }
+
     let baseURL = 'http://10.0.2.2:5054/Questions';
     let config = {
       method: 'get',
@@ -56,11 +65,8 @@ const Quiz = ({ route, navigation}: {route: any,navigation: any}) => {
 
       //alert("Works!: " + " " + questText + " " + answers.answer1 + " " + answers.answer2 + " " + answers.answer3 + " " + answers.answer4);
 
-    } catch (error) {
-        //sendResponse();
-      Alert.alert('No more Questions to show!');
-      setIndex(0);
-      return;
+    } catch (error : any) {
+      console.log('Error: ', error);
     }
   };
 
@@ -79,6 +85,35 @@ const Quiz = ({ route, navigation}: {route: any,navigation: any}) => {
       Alert.alert('Ooops Incorrect, you lose 3 points, try again! You got ' + show + ' points!');
       setScore(score - 3);
     }
+  };
+
+  const sendResponse = async () => {
+      let config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: 'http://10.0.2.2:5054/Responses',
+        headers: {'Content-Type':'application/json','charset': 'utf-8'},
+        data : JSON.stringify({
+          responseName : username,
+          responseDate : date,
+          responseTime : 'time',
+          responseScore : score
+        }),
+      };
+
+    axios.request(config)
+    .then(() => {
+        console.log(JSON.stringify({
+          responseName : username,
+          responseDate : date,
+          responseTime : 'time',
+          responseScore : score
+            }));
+    })
+    .catch((error: any) => {
+        console.log(error);
+        console.log(AxiosError);
+    });
   };
 
   useEffect(() => {

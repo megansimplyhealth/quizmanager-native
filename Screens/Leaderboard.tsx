@@ -47,10 +47,10 @@ const Leaderboard = ({navigation}: {navigation: any}) => {
           date: response.data[i].responseDate,
         };
         setTabledata((tableData) => [...tableData, tableDataFormat]);
-        //console.log(tableDataFormat);
+        console.log(tableDataFormat);
       }
-      //console.log(tableData.length);
-      //console.log(tableData);
+      console.log(tableData.length);
+      console.log(tableData);
     } catch (error) {
       console.log(error);
     }
