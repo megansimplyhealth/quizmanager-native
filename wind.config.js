@@ -4,12 +4,20 @@ import {customize} from 'react-native-wind';
 customize({
   theme: {
     colors: {
-      background: '#1A434E',
-      // primary: "#333333",
-      // secondary: {
-      //   light: "#f3f3f3",
-      //   dark: "#212121",
-      // },
+      background: {
+          main: '#1A434E',
+          shaddow:'#163D47',
+        },
+      playButton: '#F7CC3E',
+      createButton: '#FC748D',
+      leaderboardButton: '#61D384',
+      titleText: '#F9FAFF',
+      answerColorOne: '#3DC7F9',
+      answerColorTwo: '#692DF7',
+      answerColorThree: '#C315EE',
+      answerColorFour: '#FB3EA6',
+      questionColor: '#F9FAFF',
+      tableBorder: '#94AEB5',
     },
   },
 });
