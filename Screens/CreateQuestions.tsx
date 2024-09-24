@@ -153,7 +153,7 @@ const styles = {
   questionContainer: s`flex-3 mt-8 mb-8 items-center justify-center px-4 bg-background-main`,
   question: s`w-full py-12 bg-background-shaddow border-2 rounded-xl border-questionColor font-bold text-xl text-center text-wrap text-questionColor bg-background-main`,
   answerContainer: s`flex-4 w-full px-4 space-y-4 bg-background-main`,
-  submitButtonContainer: s`felx-5 w-full items-center bg-background-main mt-6`,
+  submitButtonContainer: s`flex-5 w-full items-center bg-background-main mt-6`,
   submitText: s`text-4xl font-extrabold text-red-600 bg-background-main`,
 };
 

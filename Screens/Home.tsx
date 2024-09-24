@@ -19,14 +19,14 @@ const Home = ({navigation}: {navigation: any}) => {
     <View style={styles.container}>
       <MainButton
         color="playButton"
-        text="Play Questions"
+        text={'Play\nQuestions'}
         onPress={() => navigation.navigate('QuizStart')}
         visibility={true}
         style = "mb-10"
       />
       <MainButton
         color="createButton"
-        text="Create Questions"
+        text={'Create\nQuestions'}
         onPress={() => navigation.navigate('CreateQuestions')}
         visibility={true}
       />
@@ -36,7 +36,7 @@ const Home = ({navigation}: {navigation: any}) => {
 };
 
 const styles = {
-  container: s`flex flex-col justify-between`,
+  container: s`flex flex-col justify-between bg-background-main`,
   main: s `flex-1 items-center justify-center bg-background-main`,
   title: s`mb-10 text-6xl text-center font-extrabold leading-none tracking-tight text-titleText md:text-5xl lg:text-6xl dark:text-white`,
 };

@@ -59,15 +59,15 @@ const QuizNameInput = ({navigation}: {navigation: any}) => {
                 style={styles.question}
                 value={username}
                 onChangeText={setUsername}
-                placeholder="Insert here"
+                placeholder="Insert Name Here"
                 placeholderTextColor="white"
             />
           <MainButton
             color="playButton"
-            text="Play Questions"
+            text={'Start\nQuiz'}
             onPress={() => navigation.navigate('Quiz', { username: username, questionAmount: questionAmount })}
             visibility={true}
-            style = "mb-10"
+            style = "mb-12 mt-6"
           />
         </View>
         <View style={styles.backButtonContainer}>
@@ -79,12 +79,11 @@ const QuizNameInput = ({navigation}: {navigation: any}) => {
 );};
 
 const styles = {
-  container: s`flex flex-col justify-between`,
+  container: s`flex flex-col justify-between bg-background-main`,
   main: s `flex-1 items-center justify-center bg-background-main`,
-  questionContainer: s`flex-3 mt-8 mb-8 items-center justify-center px-4 bg-background-main`,
-  question: s`w-full py-12 bg-background-shaddow border-2 rounded-xl border-questionColor font-bold text-xl text-center text-wrap text-questionColor bg-background-main`,
+  question: s`flex-2 ml-2 items-center h-24 w-96 mb-20 bg-background-shaddow border-2 rounded-xl border-questionColor font-bold text-3xl text-center text-wrap text-questionColor bg-background-main`,
   title: s`mb-10 text-6xl text-center font-extrabold leading-none tracking-tight text-titleText md:text-5xl lg:text-6xl dark:text-white`,
-  subTitle: s`mb-10 text-5xl text-center font-extrabold leading-none tracking-tight text-titleText md:text-4xl lg:text-5xl dark:text-white`,
+  subTitle: s`mb-4 mt-16 text-4xl text-center font-extrabold leading-none tracking-tight text-titleText md:text-4xl lg:text-5xl dark:text-white`,
   backButtonContainer: s`felx-5 absolute bottom-6 w-full items-center bg-background-main`,
   backText: s`text-4xl font-extrabold text-red-600 bg-background-main`,
 };

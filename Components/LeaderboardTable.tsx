@@ -1,7 +1,9 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { Table, Row, Rows } from 'react-native-table-component';
+import { s } from 'react-native-wind';
+//import { borderStyles } from 'react-native-wind/dist/styles/view/border-style';
 
 type Columns = {
   name: string,
@@ -22,18 +24,23 @@ const LeaderboardTable : React.FC<Props> = ({ tableData}) => {
 
   return (
     <View style={styles.container}>
-      <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
-        <Row data={tableHead} style={styles.head} textStyle={styles.text} />
-        <Rows data={data} textStyle={styles.text} />
-      </Table>
+      <View style={styles.table}>
+        <Table borderStyle={styles.borderStyle}>
+          <Row data={tableHead} style={styles.head} textStyle={styles.headText} />
+          <Rows data={data} textStyle={styles.text} />
+        </Table>
+      </View>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: { width: 400, flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
-  head: { height: 40, backgroundColor: '#f1f8ff' },
-  text: { margin: 6 },
-});
+const styles = {
+  container: s`items-center`,
+  table: s`bg-background-main border-questionColor border-2 rounded-lg overflow-hidden`,
+  head: s`h-10 w-96 bg-background-main`,
+  headText: s`text-2xl text-center text-wrap text-questionColor font-bold bg-background-main`,
+  text: s`text-lg text-center text-wrap text-questionColor bg-background-main`,
+  borderStyle: s`border-2 border-questionColor`,
+};
 
 export default LeaderboardTable;
