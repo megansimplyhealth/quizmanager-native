@@ -46,7 +46,7 @@ const QuizStart = ({navigation}: {navigation: any}) => {
 const styles = {
   container: s`flex flex-col justify-between bg-background-main`,
   main: s `flex-1 items-center justify-center bg-background-main`,
-  title: s`mb-10 text-6xl text-center font-extrabold leading-none tracking-tight text-titleText md:text-5xl lg:text-6xl dark:text-white`,
+  title: s`mb-10 text-6xl text-center font-extrabold leading-none tracking-tight text-titleText md:text-5xl lg:text-6xl dark:text-white bg-background-main`,
   backButtonContainer: s`felx-5 absolute bottom-6 w-full items-center bg-background-main`,
   backText: s`text-4xl font-extrabold text-red-600 bg-background-main`,
 };

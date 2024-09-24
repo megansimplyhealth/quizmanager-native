@@ -80,12 +80,6 @@ return (
   >
     <SafeAreaView style={styles.main}>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
-        <View style={styles.backButtonContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-            <Text style={styles.backText}>BACK</Text>
-          </TouchableOpacity>
-        </View>
-
         <View style={styles.questionContainer}>
           <TextInput
             style={styles.question}
@@ -135,10 +129,14 @@ return (
             setCorrectAnswer={setCorrectAnswer}
           />
         </View>
-
         <View style={styles.submitButtonContainer}>
           <TouchableOpacity onPress={() => insertQuestion()}>
             <Text style={styles.submitText}>SUBMIT</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.backButtonContainer}>
+          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+            <Text style={styles.backText}>BACK</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -153,8 +151,8 @@ const styles = {
   questionContainer: s`flex-3 mt-8 mb-8 items-center justify-center px-4 bg-background-main`,
   question: s`w-full py-12 bg-background-shaddow border-2 rounded-xl border-questionColor font-bold text-xl text-center text-wrap text-questionColor bg-background-main`,
   answerContainer: s`flex-4 w-full px-4 space-y-4 bg-background-main`,
-  submitButtonContainer: s`flex-5 w-full items-center bg-background-main mt-6`,
-  submitText: s`text-4xl font-extrabold text-red-600 bg-background-main`,
+  submitButtonContainer: s`flex-5 py-2 mr-4 ml-4 bg-leaderboardButton border-2 rounded-xl border-leaderboardButton`,
+  submitText: s`text-4xl font-bold text-background-main text-center bg-leaderboardButton`,
 };
 
 export default CreateQuestions;

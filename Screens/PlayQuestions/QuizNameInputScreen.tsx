@@ -6,6 +6,7 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
+  ScrollView,
 } from 'react-native';
 import { s } from 'react-native-wind';
 import MainButton from '../../Components/MainButton';
@@ -45,6 +46,7 @@ const QuizNameInput = ({navigation}: {navigation: any}) => {
 
 
   return(
+    <ScrollView contentContainerStyle={{flexGrow: 1}}>
       <SafeAreaView style={styles.main}>
         <View style={styles.container}>
           <Text style={styles.title}>
@@ -76,14 +78,15 @@ const QuizNameInput = ({navigation}: {navigation: any}) => {
           </TouchableOpacity>
         </View>
       </SafeAreaView>
+      </ScrollView>
 );};
 
 const styles = {
   container: s`flex flex-col justify-between bg-background-main`,
   main: s `flex-1 items-center justify-center bg-background-main`,
   question: s`flex-2 ml-2 items-center h-24 w-96 mb-20 bg-background-shaddow border-2 rounded-xl border-questionColor font-bold text-3xl text-center text-wrap text-questionColor bg-background-main`,
-  title: s`mb-10 text-6xl text-center font-extrabold leading-none tracking-tight text-titleText md:text-5xl lg:text-6xl dark:text-white`,
-  subTitle: s`mb-4 mt-16 text-4xl text-center font-extrabold leading-none tracking-tight text-titleText md:text-4xl lg:text-5xl dark:text-white`,
+  title: s`mb-10 text-6xl text-center font-extrabold leading-none tracking-tight text-titleText md:text-5xl lg:text-6xl dark:text-white bg-background-main`,
+  subTitle: s`mb-4 mt-16 text-4xl text-center font-extrabold leading-none tracking-tight text-titleText md:text-4xl lg:text-5xl dark:text-white bg-background-main`,
   backButtonContainer: s`felx-5 absolute bottom-6 w-full items-center bg-background-main`,
   backText: s`text-4xl font-extrabold text-red-600 bg-background-main`,
 };

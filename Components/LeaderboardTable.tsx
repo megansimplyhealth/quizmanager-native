@@ -36,11 +36,11 @@ const LeaderboardTable : React.FC<Props> = ({ tableData}) => {
 
 const styles = {
   container: s`items-center`,
-  table: s`bg-background-main border-questionColor border-2 rounded-lg overflow-hidden`,
-  head: s`h-10 w-96 bg-background-main`,
-  headText: s`text-2xl text-center text-wrap text-questionColor font-bold bg-background-main`,
-  text: s`text-lg text-center text-wrap text-questionColor bg-background-main`,
-  borderStyle: s`border-2 border-questionColor`,
+  table: s`bg-background-main border-tableBorder border-2 rounded-lg overflow-hidden`,
+  head: s`h-10 w-96 bg-background-main border-tableBorder`,
+  headText: s`text-2xl text-center text-wrap text-white font-bold bg-background-main`,
+  text: s`text-lg text-center text-wrap text-white bg-background-main`,
+  borderStyle: s`border-2 border-tableBorder`,
 };
 
 export default LeaderboardTable;
