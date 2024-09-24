@@ -3,14 +3,14 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import 'react-native-gesture-handler';
-import CreateQuestions from './Screens/CreateQuestions';
+import CreateQuestions from './Screens/CreateQuestions/CreateQuestionsScreen';
 import Home from './Screens/Home';
-import QuizStart from './Screens/QuizStart';
-import Quiz from './Screens/Quiz';
+import QuizStart from './Screens/PlayQuestions/QuizStartScreen';
+import Quiz from './Screens/PlayQuestions/QuizScreen';
 import { View } from 'react-native';
 import { s } from 'react-native-wind';
-import Leaderboard from './Screens/Leaderboard';
-import QuizNameInput from './Screens/QuizNameInput';
+import Leaderboard from './Screens/PlayQuestions/LeaderboardScreen';
+import QuizNameInput from './Screens/PlayQuestions/QuizNameInputScreen';
 
 
 const Stack = createStackNavigator();

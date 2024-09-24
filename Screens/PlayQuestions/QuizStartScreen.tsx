@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { s } from 'react-native-wind';
-import MainButton from '../Components/MainButton';
+import MainButton from '../../Components/MainButton';
 
 
 const QuizStart = ({navigation}: {navigation: any}) => {

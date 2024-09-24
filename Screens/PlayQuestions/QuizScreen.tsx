@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { s } from 'react-native-wind';
-import AnswerButton from '../Components/AnswerButton';
+import AnswerButton from '../../Components/AnswerButton';
 
 
 const Quiz = ({ route, navigation}: {route: any,navigation: any}) => {
@@ -16,7 +16,7 @@ const Quiz = ({ route, navigation}: {route: any,navigation: any}) => {
   const {username} = route.params;
   const {questionAmount} = route.params;
 
-  const [index, setIndex] = useState(11);///////////////////////////////////////////////////////////////////////////
+  const [index, setIndex] = useState(0);///////////////////////////////////////////////////////////////////////////
   const [question, setQuestion] = useState('Question Text');
   const [answers, setAnswers] = useState({
     answer1: 'Answer One',

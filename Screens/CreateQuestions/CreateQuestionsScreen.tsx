@@ -12,8 +12,8 @@ import {
 } from 'react-native';
 import axios, { AxiosError } from 'axios';
 import { s } from 'react-native-wind';
-import AnswerInputBox from '../Components/AnswerInputBox';
-import RadioButtonRow from '../Components/RadioButtonRow';
+import AnswerInputBox from '../../Components/AnswerInputBox';
+import RadioButtonRow from '../../Components/RadioButtonRow';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const CreateQuestions = ({navigation}: {navigation: any}) => {

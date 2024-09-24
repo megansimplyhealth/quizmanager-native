@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { s } from 'react-native-wind';
-import LeaderboardTable from '../Components/LeaderboardTable';
+import LeaderboardTable from '../../Components/LeaderboardTable';
 import axios from 'axios';
 
 

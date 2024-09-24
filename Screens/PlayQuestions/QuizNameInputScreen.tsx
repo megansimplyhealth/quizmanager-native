@@ -8,7 +8,7 @@ import {
   TextInput,
 } from 'react-native';
 import { s } from 'react-native-wind';
-import MainButton from '../Components/MainButton';
+import MainButton from '../../Components/MainButton';
 import axios from 'axios';
 
 
