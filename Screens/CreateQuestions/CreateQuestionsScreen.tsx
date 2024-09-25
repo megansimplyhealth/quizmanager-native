@@ -23,54 +23,54 @@ const CreateQuestions = ({navigation}: {navigation: any}) => {
   const [answerThree, setAnswerThree] = useState('');
   const [answerFour, setAnswerFour] = useState('');
   const [correctAnswer, setCorrectAnswer] = useState(0);
-  //const answerList = ['Answer One', 'Answer Two', 'Answer Three', 'Answer Four'];
+
+  const submitButtonHandler = () => {
+    if (questionText !== '' && answerFour !== '' && answerThree !== '' && answerTwo !== '' && answerOne !== '' && correctAnswer !== 0) {
+      Alert.alert('Question Added! Please add more or go back to play');
+      insertQuestion();
+      setQuestionText('Question');
+      setQuestionText('');
+      setAnswerOne('');
+      setAnswerTwo('');
+      setAnswerThree('');
+      setAnswerFour('');
+      setCorrectAnswer(0);
+    } else {
+      Alert.alert('Please Fill Out All Fields!');
+    }
+  }
 
   const insertQuestion = async () => {
-    if (questionText !== '' && answerFour !== '' && answerThree !== '' && answerTwo !== '' && answerOne !== '' && correctAnswer !== 0) {
-        //alert("Question Added!" + " " + questionText + " " + answerOne + " " + answerTwo + " " + answerThree + " " + answerFour + " " + correctAnswer);
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'http://10.0.2.2:5054/Questions',
+      headers: {'Content-Type':'application/json','charset': 'utf-8'},
+      data : JSON.stringify({
+          questionText: questionText,
+          answerOne: answerOne,
+          answerTwo: answerTwo,
+          answerThree: answerThree,
+          answerFour: answerFour,
+          correctAnswer: correctAnswer,
+      }),
+    };
 
-        let config = {
-        method: 'post',
-        maxBodyLength: Infinity,
-        url: 'http://10.0.2.2:5054/Questions',
-        headers: {'Content-Type':'application/json','charset': 'utf-8'},
-        data : JSON.stringify({
-            questionText: questionText,
-            answerOne: answerOne,
-            answerTwo: answerTwo,
-            answerThree: answerThree,
-            answerFour: answerFour,
-            correctAnswer: correctAnswer,
-        }),
-      };
-
-    axios.request(config)
-    .then(() => {
-        console.log(JSON.stringify({
-                questionText: questionText,
-                answerOne: answerOne,
-                answerTwo: answerTwo,
-                answerThree: answerThree,
-                answerFour: answerFour,
-                correctAnswer: correctAnswer,
-            }));
-    })
-    .catch((error: any) => {
-        console.log(error);
-        console.log(AxiosError);
-    });
-    setQuestionText('Question');
-    setQuestionText('');
-    setAnswerOne('');
-    setAnswerTwo('');
-    setAnswerThree('');
-    setAnswerFour('');
-    setCorrectAnswer(0);
-    Alert.alert('Question Added! Please add more or go back to play');
-    } else {
-        Alert.alert('Please Fill Out All Fields!');
-    }
-
+  axios.request(config)
+  .then(() => {
+      console.log(JSON.stringify({
+              questionText: questionText,
+              answerOne: answerOne,
+              answerTwo: answerTwo,
+              answerThree: answerThree,
+              answerFour: answerFour,
+              correctAnswer: correctAnswer,
+          }));
+  })
+  .catch((error: any) => {
+      console.log(error);
+      console.log(AxiosError);
+  });
 };
 
 return (
@@ -87,6 +87,7 @@ return (
             onChangeText={setQuestionText}
             placeholder="Please Type Your Question"
             placeholderTextColor="white"
+            testID="questionInputBox"
           />
         </View>
 
@@ -98,6 +99,7 @@ return (
             placeholder="Answer One"
             style={'mb-2'}
             placeholderColor="#3DC7F9"
+            testID="answerOneInputBox"
           />
           <AnswerInputBox
             color="answerColorTwo"
@@ -106,6 +108,7 @@ return (
             placeholder="Answer Two"
             style={'mb-2'}
             placeholderColor="#692DF7"
+            testID="answerTwoInputBox"
           />
           <AnswerInputBox
             color="answerColorThree"
@@ -114,6 +117,7 @@ return (
             placeholder="Answer Three"
             style={'mb-2'}
             placeholderColor="#C315EE"
+            testID="answerThreeInputBox"
           />
           <AnswerInputBox
             color="answerColorFour"
@@ -121,21 +125,23 @@ return (
             onChange={setAnswerFour}
             placeholder="Answer Four"
             placeholderColor="#FB3EA6"
+            testID="answerFourInputBox"
           />
 
           <RadioButtonRow
             colors={['answerColorOne', 'answerColorTwo', 'answerColorThree', 'answerColorFour']}
             correctAnswer={correctAnswer}
             setCorrectAnswer={setCorrectAnswer}
+            testID="correctAnswerInput"
           />
         </View>
         <View style={styles.submitButtonContainer}>
-          <TouchableOpacity onPress={() => insertQuestion()}>
+          <TouchableOpacity testID="SubmitButton" onPress={() => submitButtonHandler()}>
             <Text style={styles.submitText}>SUBMIT</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.backButtonContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+          <TouchableOpacity testID="BackButton" onPress={() => navigation.navigate('Home')}>
             <Text style={styles.backText}>BACK</Text>
           </TouchableOpacity>
         </View>

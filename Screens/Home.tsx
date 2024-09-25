@@ -16,19 +16,21 @@ const Home = ({navigation}: {navigation: any}) => {
         Welcome to Quiz Manager
       </Text>
     </View>
-    <View style={styles.container}>
+    <View style={styles.container} >
       <MainButton
         color="playButton"
         text={'Play\nQuestions'}
         onPress={() => navigation.navigate('QuizStart')}
         visibility={true}
         style = "mb-10"
+        testID="PlayButton"
       />
       <MainButton
         color="createButton"
         text={'Create\nQuestions'}
         onPress={() => navigation.navigate('CreateQuestions')}
         visibility={true}
+        testID="CreateButton"
       />
     </View>
   </SafeAreaView>

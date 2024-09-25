@@ -13,9 +13,10 @@ interface props {
     onPress: () => void;
     visibility: boolean;
     style?: string;
+    testID: string;
   }
 
-  const MainButton: React.FC<props> = ({ color, text, onPress, visibility, style }) => {
+  const MainButton: React.FC<props> = ({ color, text, onPress, visibility, style, testID }) => {
 
     let customStyle = '';
 
@@ -27,7 +28,7 @@ interface props {
 
     return (
     <View style={s`${customStyle}`}>
-        <TouchableOpacity
+        <TouchableOpacity testID={testID}
         style={[
             s`m-2 h-56 w-96 bg-background-shaddow border-4 rounded-xl border-${color} justify-center`]}
             onPress={onPress}

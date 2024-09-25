@@ -9,9 +9,10 @@ interface props {
     correctAnswer: number;
     setCorrectAnswer: (value: number) => void;
     style?: string;
+    testID?: string;
   }
 
-const RadioButtonRow: React.FC<props> = ({ colors, correctAnswer, setCorrectAnswer, style }) => {
+const RadioButtonRow: React.FC<props> = ({ colors, correctAnswer, setCorrectAnswer, style, testID }) => {
     let customStyle = '';
 
     if (style != null) {
@@ -22,7 +23,7 @@ const RadioButtonRow: React.FC<props> = ({ colors, correctAnswer, setCorrectAnsw
     <View style={s`${customStyle}`}>
       <Text style={styles.radioLabel}>Please Select the Correct Answer</Text>
       <View style={styles.container}>
-        <View style={radioStyle.radioButton}>
+        <View testID={testID} style={radioStyle.radioButton}>
           <RadioButton.Android
             value="1"
             status={correctAnswer.toString() === '1' ? 'checked' : 'unchecked'}

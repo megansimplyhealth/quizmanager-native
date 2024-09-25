@@ -13,9 +13,10 @@ interface props {
     placeholder: string;
     style?: string;
     placeholderColor?: string;
+    testID: string;
   }
 
-  const AnswerInputBox: React.FC<props> = ({ color, value, onChange, style, placeholder, placeholderColor }) => {
+  const AnswerInputBox: React.FC<props> = ({ color, value, onChange, style, placeholder, placeholderColor, testID }) => {
 
     let customStyle = '';
 
@@ -31,6 +32,7 @@ interface props {
           value={value}
           placeholder={placeholder}
           placeholderTextColor={placeholderColor}
+          testID={testID}
         />
       </View>
     );
