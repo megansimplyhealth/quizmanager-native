@@ -24,10 +24,10 @@ const CreateQuestions = ({navigation}: {navigation: any}) => {
   const [answerFour, setAnswerFour] = useState('');
   const [correctAnswer, setCorrectAnswer] = useState(0);
 
-  const submitButtonHandler = () => {
+  const submitButtonHandler = async () => {
     if (questionText !== '' && answerFour !== '' && answerThree !== '' && answerTwo !== '' && answerOne !== '' && correctAnswer !== 0) {
       Alert.alert('Question Added! Please add more or go back to play');
-      insertQuestion();
+      await insertQuestion();
       setQuestionText('Question');
       setQuestionText('');
       setAnswerOne('');
