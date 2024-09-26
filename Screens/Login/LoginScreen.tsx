@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import auth from '@react-native-firebase/auth';
 import {
   View,
   SafeAreaView,
@@ -9,13 +10,31 @@ import {
 } from 'react-native';
 import { s } from 'react-native-wind';
 import AnswerInputBox from '../../Components/AnswerInputBox';
-
-
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 
 const Login = ({navigation}: {navigation: any}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId: '339462350846-thgh4n1kkci4bsfkvglvof6bvvvc3c9b.apps.googleusercontent.com',
+    });
+  }, []);    
+
+  async function onGoogleButtonPress() {
+    // Check if your device supports Google Play
+    await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+    // Get the users ID token
+    const { idToken } = await GoogleSignin.signIn();
+  
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+  
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(googleCredential);
+  }
 
 
   const verifyLogin = async () => {

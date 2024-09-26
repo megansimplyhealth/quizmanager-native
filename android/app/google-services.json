@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "339462350846",
+    "project_id": "quizmanager-59781",
+    "storage_bucket": "quizmanager-59781.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339462350846:android:d47ba5e99f952785a502af",
+        "android_client_info": {
+          "package_name": "com.quizmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "339462350846-89jep84abh43ta5gds4d70nr4fgq8umt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.quizmanager",
+            "certificate_hash": "991d2182bcf14930d99c1b75e77e54c10557a75b"
+          }
+        },
+        {
+          "client_id": "339462350846-thgh4n1kkci4bsfkvglvof6bvvvc3c9b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9et4-yn-e_pJ2MZhz4_mMQdSbvZ0hxv4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "339462350846-thgh4n1kkci4bsfkvglvof6bvvvc3c9b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
