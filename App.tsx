@@ -18,7 +18,6 @@ const Stack = createStackNavigator();
 
 
 const App = () => {
-
   return (
     <View style={s`flex-1 bg-background-main`}>
     <NavigationContainer>

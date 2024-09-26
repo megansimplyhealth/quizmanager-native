@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import auth from '@react-native-firebase/auth';
 import {
   View,
@@ -17,25 +17,24 @@ const Login = ({navigation}: {navigation: any}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  useEffect(() => {
-    GoogleSignin.configure({
-      webClientId: '339462350846-thgh4n1kkci4bsfkvglvof6bvvvc3c9b.apps.googleusercontent.com',
-    });
-  }, []);    
+  GoogleSignin.configure({
+    webClientId: '339462350846-thgh4n1kkci4bsfkvglvof6bvvvc3c9b.apps.googleusercontent.com',
+    offlineAccess: true,
+  });
 
-  async function onGoogleButtonPress() {
-    // Check if your device supports Google Play
-    await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-    // Get the users ID token
-    const { idToken } = await GoogleSignin.signIn();
-  
-    // Create a Google credential with the token
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-  
-    // Sign-in the user with the credential
-    return auth().signInWithCredential(googleCredential);
-  }
+async function onGoogleButtonPress() {
+  // Check if your device supports Google Play
+  await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+  // Get the users ID token
+  const userInfo = await GoogleSignin.signIn();
+  const idToken = (userInfo as any).idToken;
 
+  // Create a Google credential with the token
+  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+  // Sign-in the user with the credential
+  return auth().signInWithCredential(googleCredential);
+}
 
   const verifyLogin = async () => {
     if (username !== '' && password !== '') {
@@ -77,7 +76,7 @@ const Login = ({navigation}: {navigation: any}) => {
           </TouchableOpacity>
         </View>
         <View style={styles.googleButtonContainer}>
-          <TouchableOpacity onPress={() => null}>
+          <TouchableOpacity onPress={() => onGoogleButtonPress()}>
             <Text style={styles.submitText}>GOOGLE LOGIN</Text>
           </TouchableOpacity>
         </View>
