@@ -9,8 +9,8 @@ import {
   Alert,
 } from 'react-native';
 import { s } from 'react-native-wind';
-import AnswerInputBox from '../../Components/AnswerInputBox';
 import { GoogleSignin} from '@react-native-google-signin/google-signin';
+import UserInputBox from '../../Components/UserInputBox';
 
 
 
@@ -44,6 +44,8 @@ const Login = ({navigation}: {navigation: any}) => {
     navigation.navigate('Home', {userId: userId});
     } else {
       console.log('idToken is null');
+      setUserId('');
+      Alert.alert('Error', 'Google Signin failed');
     }
 
   }
@@ -57,10 +59,10 @@ const Login = ({navigation}: {navigation: any}) => {
       const user = userCredential.user;
       setUserId(user.uid);
       //console.log('UID:', userId);
-      return userId;
     })
     .catch(error => {
       console.error('Login error:', error);
+      setUserId('');
     });
   }
 
@@ -69,7 +71,7 @@ const Login = ({navigation}: {navigation: any}) => {
       Alert.alert('Error', 'Please enter email and password');
     } else {
       await firebaseVerifyUser();
-      if (userId != '') {
+      if (userId !== '') {
         setEmail('');
         setPassword('');
         navigation.navigate('Home', {userId: userId});
@@ -87,32 +89,31 @@ const Login = ({navigation}: {navigation: any}) => {
       </Text>
     </View>
     <View style={styles.container}>
-    <AnswerInputBox
-            color="answerColorThree"
-            value={email}
-            onChange={setEmail}
-            placeholder="email"
-            style={'mb-5'}
-            placeholderColor="#C315EE"
-          />
-          <AnswerInputBox
-            color="answerColorFour"
-            value={password}
-            onChange={setPassword}
-            placeholder="Password"
-            placeholderColor="#FB3EA6"
-          />
-        </View>
-        <View style={styles.submitButtonContainer}>
-          <TouchableOpacity onPress={() => verifyLogin()}>
-            <Text style={styles.submitText}>LOGIN</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.googleButtonContainer}>
-          <TouchableOpacity onPress={() => onGoogleButtonPress()}>
-            <Text style={styles.submitText}>GOOGLE LOGIN</Text>
-          </TouchableOpacity>
-        </View>
+      <UserInputBox
+        colour="#FB3EA6"
+        value={email}
+        onChange={setEmail}
+        placeholder="email"
+        style={'mb-5'}
+      />
+      <UserInputBox
+        colour="#FB3EA6"
+        value={password}
+        onChange={setPassword}
+        placeholder="Password"
+        password={true}
+      />
+      </View>
+      <View style={styles.submitButtonContainer}>
+        <TouchableOpacity onPress={() => verifyLogin()}>
+          <Text style={styles.submitText}>LOGIN</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.googleButtonContainer}>
+        <TouchableOpacity onPress={() => onGoogleButtonPress()}>
+          <Text style={styles.submitText}>GOOGLE LOGIN</Text>
+        </TouchableOpacity>
+      </View>
   </SafeAreaView>
 );
 };
