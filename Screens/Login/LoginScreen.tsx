@@ -10,7 +10,8 @@ import {
 } from 'react-native';
 import { s } from 'react-native-wind';
 import AnswerInputBox from '../../Components/AnswerInputBox';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { GoogleSignin} from '@react-native-google-signin/google-signin';
+
 
 
 const Login = ({navigation}: {navigation: any}) => {
@@ -22,19 +23,43 @@ const Login = ({navigation}: {navigation: any}) => {
     offlineAccess: true,
   });
 
-async function onGoogleButtonPress() {
-  // Check if your device supports Google Play
-  await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-  // Get the users ID token
-  const userInfo = await GoogleSignin.signIn();
-  const idToken = (userInfo as any).idToken;
+  async function onGoogleButtonPress() {
+    // Check device supports Google Play and get google token
+    await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+    const userInfo = await GoogleSignin.signIn();
+    let idToken = userInfo.data?.idToken;
 
-  // Create a Google credential with the token
-  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+    if (idToken != null) {
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+    //console.log(userInfo);
+    //console.log(idToken);
+    //console.log(googleCredential);
 
-  // Sign-in the user with the credential
-  return auth().signInWithCredential(googleCredential);
-}
+    const userCredential = await auth().signInWithCredential(googleCredential);
+    //console.log(userCredential);
+    const user = userCredential.user;
+    const userId = user.uid;
+    //console.log('uid',userId);
+    //navigation.navigate('Home', {userId: userId});
+    navigation.navigate('Home');
+    } else {
+      console.log('idToken is null');
+    }
+
+  }
+
+  // async function signIn () {
+  //   try {
+  //     await GoogleSignin.hasPlayServices();
+  //     const userInfo = await GoogleSignin.signIn();
+  //     setUserInfo(userInfo);
+  //     console.log(userInfo);
+  //   } catch (error : any) {
+  //     console.log(error);
+  //     console.log(error.code);
+  //     console.log(error.message);
+  //   }
+  // };
 
   const verifyLogin = async () => {
     if (username !== '' && password !== '') {
