@@ -11,12 +11,12 @@ import { s } from 'react-native-wind';
 import AnswerButton from '../../Components/AnswerButton';
 
 
-const Quiz = ({ route, navigation}: {route: any,navigation: any}) => {
+const Quiz = ({ route, navigation}: {route: any, navigation: any}) => {
 
   const {username} = route.params;
   const {questionAmount} = route.params;
 
-  const [index, setIndex] = useState(0);///////////////////////////////////////////////////////////////////////////
+  const [index, setIndex] = useState(0);
   const [question, setQuestion] = useState('Question Text');
   const [answers, setAnswers] = useState({
     answer1: 'Answer One',
@@ -28,8 +28,6 @@ const Quiz = ({ route, navigation}: {route: any,navigation: any}) => {
   const [score, setScore] = useState(0);
   let newDate = new Date();
   var date = newDate.getDate() + '/' + (newDate.getMonth() + 1) + '/' + newDate.getFullYear();
-
-  //let host = '10.0.2.2:5054'; // TO DO PUT IN CONFIG FILE AND CALL
 
   const updateQuestion = async () => {
 

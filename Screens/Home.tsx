@@ -8,7 +8,10 @@ import {
 import { s } from 'react-native-wind';
 import MainButton from '../Components/MainButton';
 
-const Home = ({navigation}: {navigation: any}) => {
+const Home = ({route, navigation}: {route: any, navigation: any}) => {
+
+  const {userId} = route.params;
+
   return (
   <SafeAreaView style={styles.main}>
     <View style={styles.container}>
@@ -20,7 +23,7 @@ const Home = ({navigation}: {navigation: any}) => {
       <MainButton
         color="playButton"
         text={'Play\nQuestions'}
-        onPress={() => navigation.navigate('QuizStart')}
+        onPress={() => navigation.navigate('QuizStart', {userId: userId})}
         visibility={true}
         style = "mb-10"
       />

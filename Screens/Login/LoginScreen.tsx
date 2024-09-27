@@ -15,8 +15,9 @@ import { GoogleSignin} from '@react-native-google-signin/google-signin';
 
 
 const Login = ({navigation}: {navigation: any}) => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [userId, setUserId] = useState('');
 
   GoogleSignin.configure({
     webClientId: '339462350846-thgh4n1kkci4bsfkvglvof6bvvvc3c9b.apps.googleusercontent.com',
@@ -38,38 +39,45 @@ const Login = ({navigation}: {navigation: any}) => {
     const userCredential = await auth().signInWithCredential(googleCredential);
     //console.log(userCredential);
     const user = userCredential.user;
-    const userId = user.uid;
+    setUserId(user.uid);
     //console.log('uid',userId);
-    //navigation.navigate('Home', {userId: userId});
-    navigation.navigate('Home');
+    navigation.navigate('Home', {userId: userId});
     } else {
       console.log('idToken is null');
     }
 
   }
 
-  // async function signIn () {
-  //   try {
-  //     await GoogleSignin.hasPlayServices();
-  //     const userInfo = await GoogleSignin.signIn();
-  //     setUserInfo(userInfo);
-  //     console.log(userInfo);
-  //   } catch (error : any) {
-  //     console.log(error);
-  //     console.log(error.code);
-  //     console.log(error.message);
-  //   }
-  // };
+  async function firebaseVerifyUser () {
+    //console.log('Verifying user...');
+    await auth()
+    .signInWithEmailAndPassword(email, password)
+    .then(userCredential => {
+      //console.log(userCredential);
+      const user = userCredential.user;
+      setUserId(user.uid);
+      //console.log('UID:', userId);
+      return userId;
+    })
+    .catch(error => {
+      console.error('Login error:', error);
+    });
+  }
 
   const verifyLogin = async () => {
-    if (username !== '' && password !== '') {
-      setUsername('');
-      setPassword('');
-      navigation.navigate('Home');
+    if (email === '' || password === '') {
+      Alert.alert('Error', 'Please enter email and password');
     } else {
-      Alert.alert('Please enter a username and password');
+      await firebaseVerifyUser();
+      if (userId != '') {
+        setEmail('');
+        setPassword('');
+        navigation.navigate('Home', {userId: userId});
+      } else {
+        Alert.alert('Error', 'Invalid email or password');
+      }
     }
-  }
+  };
 
   return (
   <SafeAreaView style={styles.main}>
@@ -81,9 +89,9 @@ const Login = ({navigation}: {navigation: any}) => {
     <View style={styles.container}>
     <AnswerInputBox
             color="answerColorThree"
-            value={username}
-            onChange={setUsername}
-            placeholder="Username"
+            value={email}
+            onChange={setEmail}
+            placeholder="email"
             style={'mb-5'}
             placeholderColor="#C315EE"
           />
