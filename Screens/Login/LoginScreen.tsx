@@ -90,17 +90,19 @@ const Login = ({navigation}: {navigation: any}) => {
     </View>
     <View style={styles.container}>
       <UserInputBox
-        colour="#FB3EA6"
+        colour="answerColorFour"
         value={email}
         onChange={setEmail}
-        placeholder="email"
+        placeholder="Email                    "
+        placeholderColour="#FB3EA6"
         style={'mb-5'}
       />
       <UserInputBox
-        colour="#FB3EA6"
+        colour="answerColorFour"
         value={password}
         onChange={setPassword}
         placeholder="Password"
+        placeholderColour="#FB3EA6"
         password={true}
       />
       </View>

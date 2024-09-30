@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react';
 import {
   TextInput,
@@ -13,10 +14,19 @@ interface props {
     onChange: (value: string) => void;
     placeholder: string;
     style?: string;
+    placeholderColour?: string;
     password?: boolean;
   }
 
-  const UserInputBox: React.FC<props> = ({ colour, value, onChange, style, placeholder, password }) => {
+  const UserInputBox: React.FC<props> = ({ colour, value, onChange, style, placeholder, placeholderColour, password }) => {
+
+    const [eyeIcon, setEyeIcon] = React.useState('eye');
+    const [viewPassword, setViewPassword] = password ? React.useState(true) : React.useState(false);
+
+    const passwordViewHandler = () => {
+      setEyeIcon(eyeIcon === 'eye' ? 'eye-off' : 'eye');
+      setViewPassword(!viewPassword);
+    };
 
     let customStyle = '';
 
@@ -31,15 +41,15 @@ interface props {
               onChangeText={onChange}
               value={value}
               placeholder={placeholder}
-              placeholderTextColor={colour}
-              secureTextEntry={password}
+              placeholderTextColor={placeholderColour}
+              secureTextEntry={viewPassword}
             />
             <IconButton
-              icon={password ? 'eye-off' : 'eye'}
+              icon={eyeIcon}
               size={36}
-              onPress={() => !password}
+              onPress={passwordViewHandler}
             />
-          </View>
+          </View> 
         );
     } else {
         return (
@@ -49,7 +59,7 @@ interface props {
             onChangeText={onChange}
             value={value}
             placeholder={placeholder}
-            placeholderTextColor={colour}
+            placeholderTextColor={placeholderColour}
             />
         </View>
         );

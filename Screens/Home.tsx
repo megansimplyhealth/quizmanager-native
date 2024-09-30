@@ -1,5 +1,7 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+
+import React, { useEffect } from 'react';
 import {
   View,
   SafeAreaView,
@@ -11,6 +13,10 @@ import MainButton from '../Components/MainButton';
 const Home = ({route, navigation}: {route: any, navigation: any}) => {
 
   const {userId} = route.params;
+
+  useEffect(() => {
+    console.log('userId: ', userId);
+  }, []);
 
   return (
   <SafeAreaView style={styles.main}>
